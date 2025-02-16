@@ -175,4 +175,19 @@
         case "graphicDesign":
           content = graphicDesignPrinciples[Math.floor(Math.random() * graphicDesignPrinciples.length)];
           break;
-      
+        case "musicalProgressions":
+          const decades = Object.keys(musicalProgressions);
+          const randomDecade = decades[Math.floor(Math.random() * decades.length)];
+          const progressionArray = musicalProgressions[randomDecade];
+          const randomProgression = progressionArray[Math.floor(Math.random() * progressionArray.length)];
+          content = randomDecade + ": " + randomProgression;
+          break;
+        default:
+          content = "Please select a valid category.";
+      }
+      // Use innerHTML to ensure proper formatting
+      document.getElementById("content").innerHTML = content;
+    }
+  </script>
+</body>
+</html>

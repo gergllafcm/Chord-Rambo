@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Songwriting Prompt Generator</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 50px; }
+    button { padding: 10px 20px; font-size: 16px; }
+    #prompt { margin-top: 20px; font-size: 20px; color: #333; }
+  </style>
+</head>
+<body>
+  <h1>Songwriting Prompt Generator</h1>
+  <button onclick="generatePrompt()">Generate Prompt</button>
+  <div id="prompt"></div>
+  
+  <script>
+    const prompts = [
+      "Try a progression: C - Am - F - G",
+      "How about a lyrical idea: 'Under the neon lights...'",
+      "Experiment with a minor twist: Em - D - C - Bm",
+      "What mood does 'dusk till dawn' inspire?"
+    ];
+    
+    function generatePrompt() {
+      const randomIndex = Math.floor(Math.random() * prompts.length);
+      document.getElementById("prompt").innerText = prompts[randomIndex];
+    }
+  </script>
+</body>
+</html>

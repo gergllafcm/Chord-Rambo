@@ -6,18 +6,16 @@
   <!-- Importing Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    /* Global Styles with a tiled goose background */
+    /* Global Styles */
     body { 
       font-family: 'Roboto', sans-serif; 
       text-align: center; 
       padding: 50px; 
-      /* Lighter dark background with a different goose image */
-      background: #222 url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Goose_Icon.svg/512px-Goose_Icon.svg.png') repeat;
-      background-size: 70px 70px;
+      background: #121212;
       color: #eee;
       margin: 0;
     }
-    /* Rainbow Animated Header */
+    /* Rainbow Header */
     h1 {
       font-family: 'Pacifico', cursive;
       font-size: 3em;
@@ -28,49 +26,31 @@
       animation: rainbow 5s linear infinite;
       margin-bottom: 10px;
     }
-    /* Paragraph Styling */
+    /* Paragraphs */
     p {
       color: #ccc;
       font-size: 1.2em;
     }
-    /* Dropdown Styling */
-    select {
+    /* Form Controls */
+    select, button {
       padding: 10px; 
       font-size: 16px; 
       margin: 10px;
       border: none;
       border-radius: 5px;
+    }
+    select {
       background: #333;
       color: #eee;
     }
-    /* Goose-Shaped Button */
     button {
-      position: relative;
-      background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Goose_Icon.svg/512px-Goose_Icon.svg.png') no-repeat center;
-      background-size: cover;
-      width: 150px;
-      height: 150px;
-      border: 3px solid #fff; /* White border for contrast */
-      outline: none;
+      background: #e91e63;
+      color: #fff;
       cursor: pointer;
-      transition: transform 0.3s ease;
-      /* Custom clip-path approximating a goose shape */
-      clip-path: polygon(10% 30%, 30% 10%, 70% 10%, 90% 30%, 95% 50%, 90% 70%, 70% 90%, 30% 90%, 10% 70%, 5% 50%);
+      transition: background 0.3s ease;
     }
     button:hover {
-      transform: scale(1.1);
-    }
-    /* Button Text Overlay */
-    button span {
-      position: absolute;
-      bottom: 10px;
-      left: 0;
-      right: 0;
-      text-align: center;
-      font-weight: bold;
-      text-shadow: 1px 1px 2px #000;
-      color: #fff;
-      pointer-events: none;
+      background: #ad1457;
     }
     /* Content Display Area */
     #content { 
@@ -86,7 +66,7 @@
       margin-left: auto;
       margin-right: auto;
     }
-    /* Rainbow Animation Keyframes */
+    /* Rainbow animation keyframes */
     @keyframes rainbow {
       0% { background-position: 0%; }
       100% { background-position: 100%; }
@@ -95,7 +75,7 @@
 </head>
 <body>
   <h1>Interactive Content Generator</h1>
-  <p>Select a category below and click the goose to generate content!</p>
+  <p>Select a category below and click "Generate Content" to see something new!</p>
   <select id="category">
     <option value="tennyson">Tennyson Poems</option>
     <option value="warOfArt">The War of Art Quotes</option>
@@ -106,9 +86,7 @@
     <option value="musicalProgressions">Musical Progressions</option>
   </select>
   <br>
-  <button onclick="generateContent()">
-    <span>Generate</span>
-  </button>
+  <button onclick="generateContent()">Generate Content</button>
   <div id="content"></div>
 
   <script>
@@ -207,6 +185,7 @@
         default:
           content = "Please select a valid category.";
       }
+      // Use innerHTML to ensure proper formatting
       document.getElementById("content").innerHTML = content;
     }
   </script>

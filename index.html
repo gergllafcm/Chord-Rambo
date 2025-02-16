@@ -3,33 +3,73 @@
 <head>
   <meta charset="UTF-8">
   <title>Interactive Content Generator</title>
+  <!-- Importing Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    /* Global Styles */
     body { 
-      font-family: sans-serif; 
+      font-family: 'Roboto', sans-serif; 
       text-align: center; 
       padding: 50px; 
-      background: #f4f4f4;
+      background: #121212;
+      color: #eee;
+      margin: 0;
     }
-    h1 { color: #333; }
-    p { color: #555; }
+    /* Rainbow Header */
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 3em;
+      background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);
+      background-size: 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: rainbow 5s linear infinite;
+      margin-bottom: 10px;
+    }
+    /* Paragraphs */
+    p {
+      color: #ccc;
+      font-size: 1.2em;
+    }
+    /* Form Controls */
     select, button {
       padding: 10px; 
       font-size: 16px; 
       margin: 10px;
+      border: none;
+      border-radius: 5px;
     }
-    button { cursor: pointer; }
+    select {
+      background: #333;
+      color: #eee;
+    }
+    button {
+      background: #e91e63;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #ad1457;
+    }
+    /* Content Display Area */
     #content { 
       margin-top: 30px; 
-      font-size: 20px; 
-      color: #222; 
-      background: #fff;
+      font-size: 1.5em; 
+      color: #fafafa; 
+      background: #1e1e1e;
       padding: 20px;
       border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.5);
       white-space: pre-line;
       max-width: 800px;
       margin-left: auto;
       margin-right: auto;
+    }
+    /* Rainbow animation keyframes */
+    @keyframes rainbow {
+      0% { background-position: 0%; }
+      100% { background-position: 100%; }
     }
   </style>
 </head>
@@ -93,7 +133,6 @@
     ];
 
     // Object containing harmonic progressions grouped by decade.
-    // You can add many more entries as needed.
     const musicalProgressions = {
       "1990s": [
         "I-V-vi-IV (e.g., 'With or Without You' by U2)",
@@ -136,20 +175,4 @@
         case "graphicDesign":
           content = graphicDesignPrinciples[Math.floor(Math.random() * graphicDesignPrinciples.length)];
           break;
-        case "musicalProgressions":
-          // Choose a random decade
-          const decades = Object.keys(musicalProgressions);
-          const randomDecade = decades[Math.floor(Math.random() * decades.length)];
-          // Choose a random progression from the selected decade
-          const progressionArray = musicalProgressions[randomDecade];
-          const randomProgression = progressionArray[Math.floor(Math.random() * progressionArray.length)];
-          content = randomDecade + ": " + randomProgression;
-          break;
-        default:
-          content = "Please select a valid category.";
-      }
-      document.getElementById("content").innerText = content;
-    }
-  </script>
-</body>
-</html>
+      

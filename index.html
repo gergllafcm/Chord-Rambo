@@ -2,29 +2,153 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Songwriting Prompt Generator</title>
+  <title>Interactive Content Generator</title>
   <style>
-    body { font-family: sans-serif; text-align: center; padding: 50px; }
-    button { padding: 10px 20px; font-size: 16px; }
-    #prompt { margin-top: 20px; font-size: 20px; color: #333; }
+    body { 
+      font-family: sans-serif; 
+      text-align: center; 
+      padding: 50px; 
+      background: #f4f4f4;
+    }
+    h1 { color: #333; }
+    p { color: #555; }
+    select, button {
+      padding: 10px; 
+      font-size: 16px; 
+      margin: 10px;
+    }
+    button { cursor: pointer; }
+    #content { 
+      margin-top: 30px; 
+      font-size: 20px; 
+      color: #222; 
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      white-space: pre-line;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
   </style>
 </head>
 <body>
-  <h1>Songwriting Prompt Generator</h1>
-  <button onclick="generatePrompt()">Generate Prompt</button>
-  <div id="prompt"></div>
-  
+  <h1>Interactive Content Generator</h1>
+  <p>Select a category below and click "Generate Content" to see something new!</p>
+  <select id="category">
+    <option value="tennyson">Tennyson Poems</option>
+    <option value="warOfArt">The War of Art Quotes</option>
+    <option value="musicProducers">Music Producer Quotes</option>
+    <option value="quantum">Quantum Physics Trivia</option>
+    <option value="physiology">Human Physiology Facts</option>
+    <option value="graphicDesign">Graphic Design Principles</option>
+    <option value="musicalProgressions">Musical Progressions</option>
+  </select>
+  <br>
+  <button onclick="generateContent()">Generate Content</button>
+  <div id="content"></div>
+
   <script>
-    const prompts = [
-      "Try a progression: C - Am - F - G",
-      "How about a lyrical idea: 'Under the neon lights...'",
-      "Experiment with a minor twist: Em - D - C - Bm",
-      "What mood does 'dusk till dawn' inspire?"
+    // Content arrays for each category
+
+    const tennysonPoems = [
+      `"Tis better to have loved and lost than never to have loved at all." - Alfred, Lord Tennyson`,
+      `"Theirs not to reason why, / Theirs but to do and die." - From "The Charge of the Light Brigade"`,
+      `"Ring out, wild bells, and let him die." - A stirring line from Tennyson`
     ];
-    
-    function generatePrompt() {
-      const randomIndex = Math.floor(Math.random() * prompts.length);
-      document.getElementById("prompt").innerText = prompts[randomIndex];
+
+    const warOfArtQuotes = [
+      `"Most of us have two lives. The life we live, and the unlived life within us. Between the two stands Resistance." - Steven Pressfield, The War of Art`,
+      `"Are you paralyzed with fear? That’s a good sign. Fear is good. Like self-doubt, fear is an indicator. It tells you what you have to do." - Steven Pressfield`,
+      `"The more important a call or action is to our soul’s evolution, the more Resistance we will feel toward pursuing it." - Steven Pressfield`
+    ];
+
+    const musicProducerQuotes = [
+      `"The role of a producer is to help an artist find their true voice." - Rick Rubin`,
+      `"It’s not just about the beat—it’s about the story the music tells." - Dr. Dre`,
+      `"Great music is a blend of vision, passion, and soul." - Quincy Jones`,
+      `"Innovation comes when you break the mold and create something unexpected." - Timbaland`
+    ];
+
+    const quantumTrivia = [
+      `Quantum particles can exist in multiple states at once until observed—this is called superposition.`,
+      `Quantum entanglement means that particles can be connected over vast distances instantaneously.`,
+      `The observer effect in quantum physics suggests that the act of measuring can affect the system.`,
+      `Quantum tunneling allows particles to pass through energy barriers that they theoretically shouldn't be able to cross.`
+    ];
+
+    const physiologyFacts = [
+      `The human brain contains approximately 86 billion neurons.`,
+      `The heart beats around 100,000 times per day.`,
+      `Blood makes up about 8% of your body weight.`,
+      `The human body has over 600 muscles.`
+    ];
+
+    const graphicDesignPrinciples = [
+      `Contrast: Use differences in size, color, and shape to create focal points.`,
+      `Alignment: Arrange elements to form a clean, organized layout.`,
+      `Repetition: Repeating design elements creates consistency and unity.`,
+      `Proximity: Group related items together to create organization.`
+    ];
+
+    // Object containing harmonic progressions grouped by decade.
+    // You can add many more entries as needed.
+    const musicalProgressions = {
+      "1990s": [
+        "I-V-vi-IV (e.g., 'With or Without You' by U2)",
+        "I-vi-IV-V (e.g., 'Torn' by Natalie Imbruglia)"
+      ],
+      "2000s": [
+        "I-V-vi-IV (e.g., 'Beautiful Day' by U2)",
+        "vi-IV-I-V (e.g., 'No One' by Alicia Keys)"
+      ],
+      "2010s": [
+        "I-V-vi-IV (e.g., 'Someone Like You' by Adele)",
+        "vi-IV-I-V (e.g., 'All of Me' by John Legend)"
+      ],
+      "2020s": [
+        "I-V-vi-IV (e.g., 'Watermelon Sugar' by Harry Styles)",
+        "vi-IV-I-V (e.g., 'Blinding Lights' by The Weeknd)"
+      ]
+    };
+
+    function generateContent() {
+      const category = document.getElementById("category").value;
+      let content = "";
+      
+      switch (category) {
+        case "tennyson":
+          content = tennysonPoems[Math.floor(Math.random() * tennysonPoems.length)];
+          break;
+        case "warOfArt":
+          content = warOfArtQuotes[Math.floor(Math.random() * warOfArtQuotes.length)];
+          break;
+        case "musicProducers":
+          content = musicProducerQuotes[Math.floor(Math.random() * musicProducerQuotes.length)];
+          break;
+        case "quantum":
+          content = quantumTrivia[Math.floor(Math.random() * quantumTrivia.length)];
+          break;
+        case "physiology":
+          content = physiologyFacts[Math.floor(Math.random() * physiologyFacts.length)];
+          break;
+        case "graphicDesign":
+          content = graphicDesignPrinciples[Math.floor(Math.random() * graphicDesignPrinciples.length)];
+          break;
+        case "musicalProgressions":
+          // Choose a random decade
+          const decades = Object.keys(musicalProgressions);
+          const randomDecade = decades[Math.floor(Math.random() * decades.length)];
+          // Choose a random progression from the selected decade
+          const progressionArray = musicalProgressions[randomDecade];
+          const randomProgression = progressionArray[Math.floor(Math.random() * progressionArray.length)];
+          content = randomDecade + ": " + randomProgression;
+          break;
+        default:
+          content = "Please select a valid category.";
+      }
+      document.getElementById("content").innerText = content;
     }
   </script>
 </body>
